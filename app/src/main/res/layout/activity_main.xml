@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.pixelogical.picolink.MainActivity">
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_search" />
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:inputType="text"
+        app:iconifiedByDefault="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint='Your file name -  Exp: Minions'>
+
+    </android.support.v7.widget.SearchView>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintLeft_toLeftOf="@+id/searchView"
+        app:layout_constraintRight_toRightOf="@+id/searchView"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtScannig">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/cat_video"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:button="@android:color/transparent"
+                    android:fontFamily="cursive"
+                    android:layoutDirection="rtl"
+                    android:text="@string/cat_video"
+                    android:textAlignment="viewEnd"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:background="#AA000000" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/ex_mkv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_mkv" />
+
+                        <CheckBox
+                            android:id="@+id/ex_mp4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_mp4" />
+
+                        <CheckBox
+                            android:id="@+id/ex_3gp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_3gp" />
+
+                        <CheckBox
+                            android:id="@+id/ex_flv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_flv" />
+
+                        <CheckBox
+                            android:id="@+id/ex_avi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_avi" />
+
+
+                        <CheckBox
+                            android:id="@+id/ex_mpeg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_mpeg" />
+
+                        <CheckBox
+                            android:id="@+id/ex_mov"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_mov" />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp">
+
+                <CheckBox
+                    android:id="@+id/cat_audio"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:button="@android:color/transparent"
+                    android:fontFamily="cursive"
+                    android:layoutDirection="rtl"
+                    android:text="@string/cat_audio"
+                    android:textAlignment="viewEnd"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:background="#AA000000" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/ex_mp3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_mp3" />
+
+                        <CheckBox
+                            android:id="@+id/ex_wma"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_wma" />
+
+                        <CheckBox
+                            android:id="@+id/ex_flac"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_flac" />
+
+                        <CheckBox
+                            android:id="@+id/ex_ogg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_ogg" />
+
+                        <CheckBox
+                            android:id="@+id/ex_wav"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_wav" />
+
+                        <CheckBox
+                            android:id="@+id/ex_aac"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_aac" />
+
+                        <CheckBox
+                            android:id="@+id/ex_amr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_amr" />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/cat_document"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:button="@android:color/transparent"
+                    android:fontFamily="cursive"
+                    android:layoutDirection="rtl"
+                    android:text="@string/cat_document"
+                    android:textAlignment="viewEnd"
+                    android:textSize="20sp" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:background="#AA000000" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/ex_srt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_srt" />
+
+                        <CheckBox
+                            android:id="@+id/ex_pdf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_pdf" />
+
+                        <CheckBox
+                            android:id="@+id/ex_docx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_docx" />
+
+                        <CheckBox
+                            android:id="@+id/ex_doc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_doc" />
+
+                        <CheckBox
+                            android:id="@+id/ex_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_txt" />
+
+                        <CheckBox
+                            android:id="@+id/ex_xml"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_xml" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/cat_application"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:button="@android:color/transparent"
+                    android:fontFamily="cursive"
+                    android:layoutDirection="rtl"
+                    android:text="@string/cat_application"
+                    android:textAlignment="viewEnd"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:background="#AA000000" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/ex_exe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_exe" />
+
+                        <CheckBox
+                            android:id="@+id/ex_apk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_apk" />
+
+                        <CheckBox
+                            android:id="@+id/ex_jar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_jar" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/cat_compressed"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:button="@android:color/transparent"
+                    android:fontFamily="cursive"
+                    android:layoutDirection="rtl"
+                    android:text="@string/cat_compressed"
+                    android:textAlignment="viewEnd"
+                    android:textSize="20sp" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:background="#AA000000" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/ex_zip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_zip" />
+
+                        <CheckBox
+                            android:id="@+id/ex_rar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_rar" />
+
+                        <CheckBox
+                            android:id="@+id/ex_7z"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_7z" />
+
+                        <CheckBox
+                            android:id="@+id/ex_deb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_deb" />
+
+                        <CheckBox
+                            android:id="@+id/ex_targz"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_targz" />
+
+                        <CheckBox
+                            android:id="@+id/ex_gz"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_gz" />
+
+                        <CheckBox
+                            android:id="@+id/ex_bin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/ex_bin" />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginRight="0dp"
+        android:elevation="0dp"
+        android:text="Skip"
+        android:textSize="10sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintRight_toRightOf="@+id/scrollView2" />
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi"
+        style="@style/AVLoadingIndicatorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:indicatorColor="@color/colorPrimary"
+        app:indicatorName="BallPulseSyncIndicator"
+        app:layout_constraintTop_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintBottom_toBottomOf="@+id/floatingActionButton"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="24dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:max="100"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toRightOf="@+id/avi"
+        app:layout_constraintRight_toLeftOf="@+id/floatingActionButton"
+        app:layout_constraintTop_toTopOf="@+id/avi"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/currentLink"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:ellipsize="end"
+        android:fontFamily="serif-monospace"
+        android:maxLines="1"
+        android:text="CurrentLink"
+        android:textAlignment="textStart"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="@+id/txtScannig"
+        app:layout_constraintRight_toLeftOf="@+id/button"
+        android:layout_marginRight="24dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
+        android:layout_marginBottom="0dp" />
+
+    <TextView
+        android:id="@+id/txtScannig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="0dp"
+        android:fontFamily="serif-monospace"
+        android:text="Scannig"
+        app:layout_constraintBottom_toTopOf="@+id/currentLink"
+        app:layout_constraintLeft_toLeftOf="@+id/scrollView2" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">PicoLink</string>
+
+    <string name="cat_video">Video</string>
+    <string name="cat_audio">Audio</string>
+    <string name="cat_document">Document</string>
+    <string name="cat_application">Application</string>
+    <string name="cat_compressed">Compressed</string>
+
+
+    <string name="ex_mkv">.mkv</string>
+    <string name="ex_mp4">.mp4</string>
+    <string name="ex_avi">.avi</string>
+    <string name="ex_3gp">.3gp</string>
+    <string name="ex_flv">.flv</string>
+    <string name="ex_mpeg">.mpeg</string>
+    <string name="ex_mov">.mov</string>
+
+    <string name="ex_mp3">.mp3</string>
+    <string name="ex_wma">.wma</string>
+    <string name="ex_ogg">.ogg</string>
+    <string name="ex_wav">.wav</string>
+    <string name="ex_flac">.flac</string>
+    <string name="ex_aac">.aac</string>
+    <string name="ex_amr">.amr</string>
+
+    <string name="ex_srt">.srt</string>
+    <string name="ex_pdf">.pdf</string>
+    <string name="ex_docx">.docx</string>
+    <string name="ex_doc">.doc</string>
+    <string name="ex_txt">.txt</string>
+    <string name="ex_xml">.xml</string>
+
+    <string name="ex_exe">.exe</string>
+    <string name="ex_apk">.apk</string>
+    <string name="ex_jar">.jar</string>
+
+    <string name="ex_zip">.zip</string>
+    <string name="ex_rar">.rar</string>
+    <string name="ex_7z">.7z</string>
+    <string name="ex_deb">.deb</string>
+    <string name="ex_targz">.tar.gz</string>
+    <string name="ex_gz">.gz</string>
+    <string name="ex_bin">.bin</string>
+
+    <string name="main_selectall"><u>Select All</u></string>
+
+
+</resources>
