@@ -23,7 +23,7 @@ class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnClickListe
         TextView txtName;
         TextView txtType;
         ImageView info;
-    }
+    } 
 
     CustomAdapter(ArrayList<DataModel> data, Context context) {
         super(context, R.layout.row_item, data);
