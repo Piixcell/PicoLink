@@ -23,7 +23,7 @@ class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnClickListe
         TextView txtName;
         TextView txtType;
         ImageView info;
-    } 
+    }
 
     CustomAdapter(ArrayList<DataModel> data, Context context) {
         super(context, R.layout.row_item, data);
@@ -40,7 +40,7 @@ class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnClickListe
         DataModel dataModel = (DataModel) object;
 
         switch (v.getId()) {
-            case R.id.itemLayout:
+            case R.id.item_info:
                 Snackbar.make(v, "Release date " + dataModel.getFeature(), Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
                 break;
@@ -65,7 +65,7 @@ class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnClickListe
             convertView = inflater.inflate(R.layout.row_item, parent, false);
             viewHolder.txtName = (TextView) convertView.findViewById(R.id.name);
             viewHolder.txtType = (TextView) convertView.findViewById(R.id.type);
-            viewHolder.info = (ImageView) convertView.findViewById(R.id.extension);
+            viewHolder.info = (ImageView) convertView.findViewById(R.id.item_info);
 
             result = convertView;
 
