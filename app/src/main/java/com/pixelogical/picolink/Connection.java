@@ -30,7 +30,6 @@ public class Connection {
             connection.setConnectTimeout(2000);
             connection.setReadTimeout(2000);
             connection.connect();
-            Log.e("HAJM@@@@@@@@", "[" + connection.getContentLength() + "]");
             int resCode = connection.getResponseCode();
             if (resCode == 200) {
 

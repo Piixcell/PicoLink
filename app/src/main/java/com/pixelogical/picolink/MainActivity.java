@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<String> parseHTML(String result) {
+    private ArrayList<String> parseGoogle(String result) {
         ArrayList<String> sites = new ArrayList<>();
         if (result == "" || result == "disconnect") {
             Log.e("ParseHTML", "NO RESULT");
@@ -174,6 +174,21 @@ public class MainActivity extends AppCompatActivity {
             for (Element link : links) {
                 sites.add(link.text());
                 Log.e("CITE", link.text());
+            }
+        }
+        return sites;
+    }
+
+    private ArrayList<String> parseYahoo(String result) {
+        ArrayList<String> sites = new ArrayList<>();
+        if (result == "" || result == "disconnect") {
+            Log.e("ParseHTML", "NO RESULT");
+        } else {
+            Document doc = Jsoup.parse(result);
+            Elements links = doc.getElementsByClass(" fz-ms fw-m fc-12th wr-bw lh-17");
+            for (Element link : links) {
+                sites.add(link.text());
+                Log.e("YahooCITE", link.text());
             }
         }
         return sites;
@@ -323,11 +338,20 @@ public class MainActivity extends AppCompatActivity {
                 html = new ArrayList<>();
                 xmlLinks = new ArrayList<>();
                 result = new JSONObject();
-                String code = "%5B" + word
+                String googleCode = "%5B" + word
                         + "%5D+-inurl%3A(htm%7Chtml%7Cphp%7Cpls%7Ctxt)+intitle%3Aindex.of+\"last+modified\"+(" + googleExtensions + ")&oq=%5Bdeadpool%5D+-inurl%3A(htm%7Chtml%7Cphp%7Cpls%7Ctxt)+intitle%3Aindex.of+\"last+modified\"+(" + googleExtensions + ")&ie=UTF-8";
-                Log.e("PIC0LinK  ~> ", code);
-                this.htmlResult = connection.connect("https://google.com/search?q=" + code);
-                html = parseHTML(this.htmlResult);
+
+                this.htmlResult = connection.connect("https://google.com/search?q=" + googleCode);
+                if (this.htmlResult.equals("disconnect")) {
+                    String yahooCode = "%5B" + word
+                            + "%5D+-inurl%3A%28htm%7Chtml%7Cphp%7Cpls%7Ctxt%29+intitle%3Aindex.of+%E2%80%9Clast+modified%E2%80%9D+%28mkv%7Cmp4%7Cavi%29&fr=yfp-t&fp=1&toggle=1&cop=mss&ei=UTF-8";
+                    this.htmlResult = connection.connect("https://search.yahoo.com/search;_ylc=X3oDMTFiN25laTRvBF9TAzIwMjM1MzgwNzUEaXRjAzEEc2VjA3NyY2hfcWEEc2xrA3NyY2h3ZWI-?p=" + yahooCode);
+                    html = parseYahoo(this.htmlResult);
+                } else {
+                    html = parseGoogle(this.htmlResult);
+                }
+
+                Log.e("HTML", "#" + this.htmlResult);
                 if (!html.isEmpty()) {
                     for (int i = 0; i < html.size(); i++) {
                         MainActivity.progress = (i + 1) * 10;
