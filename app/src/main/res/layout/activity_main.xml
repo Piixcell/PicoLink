@@ -289,14 +289,6 @@
                         android:orientation="horizontal">
 
                         <CheckBox
-                            android:id="@+id/ex_srt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
-                            android:layout_weight="1"
-                            android:text="@string/ex_srt" />
-
-                        <CheckBox
                             android:id="@+id/ex_pdf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

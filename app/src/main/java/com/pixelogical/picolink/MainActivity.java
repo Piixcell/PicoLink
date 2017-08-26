@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     String word = "minions";
     static int videosDigits[] = {R.id.ex_3gp, R.id.ex_mpeg, R.id.ex_mp4, R.id.ex_mkv, R.id.ex_flv, R.id.ex_avi, R.id.ex_mov};
     static int audiosDigits[] = {R.id.ex_mp3, R.id.ex_wma, R.id.ex_ogg, R.id.ex_wav, R.id.ex_flac, R.id.ex_aac, R.id.ex_amr};
-    static int documentsDigits[] = {R.id.ex_srt,R.id.ex_pdf, R.id.ex_docx, R.id.ex_doc, R.id.ex_txt, R.id.ex_xml};
+    static int documentsDigits[] = {R.id.ex_pdf, R.id.ex_docx, R.id.ex_doc, R.id.ex_txt, R.id.ex_xml};
     static int applicationsDigits[] = {R.id.ex_exe, R.id.ex_apk, R.id.ex_jar};
     static int compressedDigits[] = {R.id.ex_zip, R.id.ex_rar, R.id.ex_7z, R.id.ex_deb, R.id.ex_targz, R.id.ex_gz, R.id.ex_bin};
 
