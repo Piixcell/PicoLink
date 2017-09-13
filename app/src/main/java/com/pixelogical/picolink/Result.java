@@ -1,12 +1,14 @@
 package com.pixelogical.picolink;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,7 +33,7 @@ public class Result extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-//        test = (TextView) findViewById(R.id.textView);
+//         test = (TextView) findViewById(R.id.textView);
 //        test.setText(getIntent().getStringExtra("picoLink"));
 
         listView = (ListView) findViewById(R.id.resultListView);
@@ -52,16 +54,23 @@ public class Result extends AppCompatActivity {
 //        dataModels.add(new DataModel("Lollipop","Android 5.0","21","November 12, 2014"));
 //        dataModels.add(new DataModel("Marshmallow", "Android 6.0", "23","October 5, 2015"));
         try {
-            JSONObject x = new JSONObject(getIntent().getStringExtra("result"));
-            Log.e("JS000000N",x.toString());
-            Iterator<String> iter = x.keys();
+            JSONObject root = new JSONObject(getIntent().getStringExtra("result"));
+            Log.e("JS000000N", root.toString());
+            Iterator<String> iter = root.keys();
             while (iter.hasNext()) {
                 String site = iter.next();
-                JSONArray xmlLinksArray = x.getJSONArray(site);
-                for(int i = 0; i < xmlLinksArray.length(); i++){
-                    String link = xmlLinksArray.getString(i);
-                    dataModels.add(new DataModel(link, site, "23","October 5, 2015"));
+                JSONObject items = root.getJSONObject(site);
+                Iterator<String> iter2 = items.keys();
+                while (iter2.hasNext()) {
+                    String fileName = iter2.next();
+                    Object fileUrlObject = items.get(fileName);
+                    String fileUrl = fileUrlObject.toString();
+                    dataModels.add(new DataModel(fileName, site, fileUrl, "October 5, 2017"));
+                    /////////////////////////////  name  , type, version number
                 }
+//                for (int i = 0; i < xmlLinksArray.length(); i++) {
+//                    String link = xmlLinksArray.getString(i);
+//                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -76,17 +85,26 @@ public class Result extends AppCompatActivity {
 
                 DataModel dataModel = dataModels.get(position);
 
+                    
 //                Snackbar.make(view, dataModel.getName() + "\n" + dataModel.getType() + " API: " + dataModel.getVersion_number(), Snackbar.LENGTH_LONG)
 //                        .setAction("No action", null).show();
                 try {
-                    Intent i = new Intent(Intent.ACTION_SEND);
-                    i.setType("video/mp4");
-                    i.putExtra(Intent.EXTRA_SUBJECT, "My application name");
-                    String sAux = "\nLet me recommend you this application\n\n";
-                    sAux = sAux + "http://google.com/saed.mp4 \n\n";
-                    i.putExtra(Intent.EXTRA_TEXT, sAux);
-                    startActivity(Intent.createChooser(i, "choose one"));
-                } catch(Exception e) {
+                    String linkAddress = dataModel.type + dataModel.version_number;
+//                    MimeTypeMap mime = MimeTypeMap.getSingleton();
+//                    String endOfUrl = linkAddress.substring(linkAddress.length() - 5);
+//                    String ext = endOfUrl.substring(endOfUrl.indexOf(".") + 1);
+//                    String type = mime.getMimeTypeFromExtension(ext);
+//
+//                    Intent i = new Intent(Intent.ACTION_SEND);
+//                    i.setType(type);
+//                    i.putExtra(Intent.EXTRA_SUBJECT, "PicoLink");
+//                    i.putExtra(Intent.EXTRA_TEXT, linkAddress);
+//                    startActivity(Intent.createChooser(i, "Open with"));
+
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(linkAddress));
+                    startActivity(i);
+                } catch (Exception e) {
                     //e.toString();
                 }
             }

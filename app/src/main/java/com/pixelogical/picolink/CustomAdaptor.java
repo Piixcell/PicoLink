@@ -1,12 +1,15 @@
 package com.pixelogical.picolink;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +33,7 @@ class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnClickListe
         this.dataSet = data;
         this.mContext = context;
 
+
     }
 
     @Override
@@ -39,10 +43,21 @@ class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnClickListe
         Object object = getItem(position);
         DataModel dataModel = (DataModel) object;
 
+
         switch (v.getId()) {
             case R.id.item_info:
-                Snackbar.make(v, "Release date " + dataModel.getFeature(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
+                try {
+                    Log.e("U CLICKED ME", "SHARE BUTTON");
+                    String linkAddress = dataModel.type + dataModel.version_number;
+                    Intent i = new Intent(Intent.ACTION_SEND);
+                    i.setType("text/plain");
+                    i.putExtra(android.content.Intent.EXTRA_SUBJECT, "PicoLink");
+                    i.putExtra(android.content.Intent.EXTRA_TEXT, linkAddress);
+                    Intent tmp = Intent.createChooser(i, "Share with").setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(tmp);
+                } catch (Exception e) {
+                    //e.toString();
+                }
                 break;
         }
     }

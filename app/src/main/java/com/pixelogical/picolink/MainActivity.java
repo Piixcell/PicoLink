@@ -194,8 +194,12 @@ public class MainActivity extends AppCompatActivity {
         return sites;
     }
 
-    private ArrayList<String> parseXML(String result) {
-        ArrayList<String> resultLinks = new ArrayList<>();
+    private ArrayList<String>[] parseXML(String result) {
+        //first = NAME second = ADDRESS
+        ArrayList<String>[] xmlOutput = new ArrayList[2];
+
+        xmlOutput[0] = new ArrayList<>();
+        xmlOutput[1] = new ArrayList<>();
         if (result == "" || result == null || result == "disconnect") {
             Log.e("ParseXML", "NO XML RESULT");
             return null;
@@ -225,17 +229,21 @@ public class MainActivity extends AppCompatActivity {
                     if (validFile)
                         for (int i = 0; i < words.length; i++) {
                             if (address.toLowerCase().contains(words[i].toLowerCase())) {
-                                resultLinks.add(name);
+                                xmlOutput[0].add(name);
+                                xmlOutput[1].add(address);
                             }
                         }
                 }
             }
         }
-        return resultLinks;
+        return xmlOutput;
     }
 
-    private ArrayList<String> parseXML2(String result) {
-        ArrayList<String> resultLinks = new ArrayList<>();
+    private ArrayList<String>[] parseXML2(String result) {
+        //first = NAME second = ADDRESS
+        ArrayList<String>[] xmlOutput = new ArrayList[2];
+        xmlOutput[0] = new ArrayList<>();
+        xmlOutput[1] = new ArrayList<>();
         if (result == "" || result == null || result == "disconnect") {
             Log.e("ParseXML", "NO XML RESULT");
             return null;
@@ -258,7 +266,8 @@ public class MainActivity extends AppCompatActivity {
                     if (validFile)
                         for (int i = 0; i < words.length; i++) {
                             if (name.toLowerCase().contains(words[i].toLowerCase())) {
-                                resultLinks.add(name);
+                                xmlOutput[0].add(name);
+                                xmlOutput[1].add(address);
                             }
                         }
                 }
@@ -266,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
                 return null;
             }
         }
-        return resultLinks;
+        return xmlOutput;
     }
 
     public String getGoogleExtensionsFromCB() {
@@ -324,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
         private String htmlResult = null;
         private String xmlPage = null;
         private ArrayList<String> html = null;
-        private ArrayList<String> xmlLinks = null;
+        private ArrayList<String>[] xmlOutput = null;
         private JSONObject result;
 
         public ConnectionThread(Connection connection) {
@@ -336,7 +345,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 x.show();
                 html = new ArrayList<>();
-                xmlLinks = new ArrayList<>();
+                xmlOutput = new ArrayList[2];
                 result = new JSONObject();
                 String googleCode = "%5B" + word
                         + "%5D+-inurl%3A(htm%7Chtml%7Cphp%7Cpls%7Ctxt)+intitle%3Aindex.of+\"last+modified\"+(" + googleExtensions + ")&oq=%5Bdeadpool%5D+-inurl%3A(htm%7Chtml%7Cphp%7Cpls%7Ctxt)+intitle%3Aindex.of+\"last+modified\"+(" + googleExtensions + ")&ie=UTF-8";
@@ -369,26 +378,24 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                         if (html.get(i) != null) {
+                            JSONObject siteObject = new JSONObject();
                             String site = "http://" + html.get(i);
                             connection = new Connection();
                             xmlPage = connection.connect(site);
-                            xmlLinks = parseXML(xmlPage);
-                            if (xmlPage != null && xmlLinks != null && xmlLinks.size() != 0) {
-                                Log.e(")))", "X: " + xmlLinks.get(0));
-                                JSONArray xmlLinksArray = new JSONArray();
-                                for (String a : xmlLinks) {
-                                    xmlLinksArray.put(a);
+                            xmlOutput = parseXML(xmlPage);
+                            if (xmlPage != null && xmlOutput != null && xmlOutput[0].size() != 0) {
+                                for (int j = 0; j < xmlOutput[0].size(); j++) {
+                                    siteObject.put(xmlOutput[0].get(j), xmlOutput[1].get(j));
                                 }
-                                result.put(site, xmlLinksArray);
+
+                                result.put(site, siteObject);
                             } else {
-                                xmlLinks = parseXML2(xmlPage);
-                                if (xmlPage != null && xmlLinks != null && xmlLinks.size() != 0) {
-                                    Log.e(")))", "X: " + xmlLinks.get(0));
-                                    JSONArray xmlLinksArray = new JSONArray();
-                                    for (String a : xmlLinks) {
-                                        xmlLinksArray.put(a);
+                                xmlOutput = parseXML2(xmlPage);
+                                if (xmlPage != null && xmlOutput != null && xmlOutput[0].size() != 0) {
+                                    for (int j = 0; j < xmlOutput[0].size(); j++) {
+                                        siteObject.put(xmlOutput[0].get(j), xmlOutput[1].get(j));
                                     }
-                                    result.put(site, xmlLinksArray);
+                                    result.put(site, siteObject);
                                 } else {
                                     Log.e(")))", "NULLLLLLL");
                                 }
